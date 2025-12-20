@@ -10,7 +10,7 @@ export default function Projects() {
   const featuredProjects = portfolioData.projects.slice(0, 3);
 
   return (
-    <section id="projects" className="container mx-auto px-4 py-12 md:py-16 bg-gray-50">
+    <section id="projects" className="container mx-auto px-4 py-12 md:py-16 bg-gray-50 dark:bg-gray-800/50">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ export default function Projects() {
         transition={{ duration: 0.6 }}
       >
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
             Featured Projects
           </h2>
           <Link

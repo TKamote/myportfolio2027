@@ -14,13 +14,13 @@ export default function Contact() {
         transition={{ duration: 0.6 }}
         className="max-w-2xl mx-auto text-center"
       >
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8">
           Get In Touch
         </h2>
         <div className="space-y-4">
           <a
             href={`mailto:${portfolioData.personal.email}`}
-            className="flex items-center justify-center gap-3 text-base md:text-lg text-gray-700 hover:text-primary transition-colors"
+            className="flex items-center justify-center gap-3 text-base md:text-lg text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
           >
             <Mail size={20} />
             {portfolioData.personal.email}
@@ -29,12 +29,12 @@ export default function Contact() {
             href={portfolioData.personal.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 text-base md:text-lg text-gray-700 hover:text-primary transition-colors"
+            className="flex items-center justify-center gap-3 text-base md:text-lg text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
           >
             <Github size={20} />
             GitHub Profile
           </a>
-          <div className="flex items-center justify-center gap-3 text-base md:text-lg text-gray-700">
+          <div className="flex items-center justify-center gap-3 text-base md:text-lg text-gray-700 dark:text-gray-300">
             <MapPin size={20} />
             {portfolioData.personal.location}
           </div>

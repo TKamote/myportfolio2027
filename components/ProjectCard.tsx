@@ -29,23 +29,23 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+      className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:shadow-lg dark:hover:shadow-xl transition-shadow"
     >
       <div className="p-4 md:p-6">
         <div className="flex items-start justify-between mb-3">
-          <h3 className="text-lg md:text-xl font-bold text-gray-900">{project.title}</h3>
-          <span className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded whitespace-nowrap">
+          <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">{project.title}</h3>
+          <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded whitespace-nowrap">
             {project.status}
           </span>
         </div>
-        <p className="text-sm md:text-base text-gray-700 mb-4 leading-relaxed">
+        <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
           {project.shortDescription}
         </p>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tech.slice(0, 3).map((tech, i) => (
             <span
               key={i}
-              className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded"
+              className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded"
             >
               {tech}
             </span>
