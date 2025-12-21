@@ -27,15 +27,18 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+          <Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity">
             <Image
               src={logoImage}
               alt="David Verano Logo"
               width={120}
               height={120}
-              className="object-contain h-8 md:h-10 w-auto rounded-lg"
+              className="object-contain h-8 md:h-10 w-auto rounded-lg flex-shrink-0"
               priority
             />
+            <span className="text-base md:text-lg lg:text-xl font-bold text-gray-900 dark:text-white whitespace-nowrap">
+              David's Portfolio
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
