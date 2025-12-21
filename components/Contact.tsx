@@ -38,6 +38,22 @@ export default function Contact() {
             <MapPin size={20} />
             {portfolioData.personal.location}
           </div>
+          <div className="pt-4 mt-4">
+            <div className="w-4/5 sm:w-3/5 mx-auto border-t border-gray-200 dark:border-gray-700 mb-3"></div>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 italic">Alternative emails:</p>
+            <div className="space-y-1">
+              {portfolioData.personal.emails.slice(1).map((email, index) => (
+                <a
+                  key={index}
+                  href={`mailto:${email}`}
+                  className="flex items-center justify-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-colors italic break-all px-2"
+                >
+                  <Mail size={14} className="flex-shrink-0" />
+                  <span className="break-words">{email}</span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </motion.div>
     </section>

@@ -32,10 +32,10 @@ export default function ProjectDetailPage({ params }: PageProps) {
           ← Back to Projects
         </Link>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           {project.title}
         </h1>
-        <p className="text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
+        <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
           {project.description}
         </p>
 
@@ -43,18 +43,18 @@ export default function ProjectDetailPage({ params }: PageProps) {
           {project.tech.map((tech, i) => (
             <span
               key={i}
-              className="text-sm px-3 py-1 bg-gray-100 text-gray-700 rounded"
+              className="text-sm px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded"
             >
               {tech}
             </span>
           ))}
         </div>
 
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 md:p-6 mb-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Features</h2>
+        <div className="bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-4 md:p-6 mb-6">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Features</h2>
           <ul className="space-y-2">
             {project.features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2 text-base text-gray-700">
+              <li key={index} className="flex items-start gap-2 text-base text-gray-700 dark:text-gray-300">
                 <span className="text-primary mt-1">•</span>
                 <span>{feature}</span>
               </li>
@@ -64,11 +64,11 @@ export default function ProjectDetailPage({ params }: PageProps) {
 
         {project.hasImages && (
           <div className="mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Visual Showcase</h2>
-            <p className="text-sm text-gray-600 mb-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Visual Showcase</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               Screenshots and still images from actual live streams will be displayed here.
             </p>
-            <div className="bg-gray-100 border border-gray-200 rounded-lg p-8 text-center text-gray-500">
+            <div className="bg-gray-100 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-8 text-center text-gray-500 dark:text-gray-400">
               <p className="text-sm">Overlay screenshots and live stream images</p>
               <p className="text-xs mt-2">(Images to be added)</p>
             </div>

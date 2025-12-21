@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
+import Image from "next/image";
+import logoImage from "./assets/davebigger.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,8 +27,15 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
       <nav className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary transition-colors">
-            David V Onquit
+          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <Image
+              src={logoImage}
+              alt="David Verano Logo"
+              width={120}
+              height={120}
+              className="object-contain h-8 md:h-10 w-auto rounded-lg"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

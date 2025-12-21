@@ -8,8 +8,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "David V Onquit - Solopreneur & Mobile App Developer",
-  description: "Building complete mobile solutions from scratch. Started coding at 52, now 57 with 2 apps live on App Store.",
+  title: "David Verano - Solopreneur & Mobile App Developer",
+  description: "Building complete mobile solutions from scratch. Started coding in 2020 in a journey that as of today (Dec 2025 @57yo) has 2 apps live on the Apple App Store.",
   keywords: ["mobile app developer", "React Native", "Expo", "Firebase", "solopreneur", "iOS", "Android"],
 };
 

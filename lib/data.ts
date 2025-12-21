@@ -1,15 +1,20 @@
 export const portfolioData = {
   personal: {
-    name: "David V Onquit",
+    name: "David Verano",
     title: "Solopreneur & Mobile App Developer",
     tagline: "Building complete mobile solutions from scratch",
     location: "Singapore",
     email: "david@pdfreportmaker.com",
+    emails: [
+      "david@pdfreportmaker.com",
+      "admin@tkamot.com",
+      "support@tournatracker.com",
+    ],
     github: "https://github.com/TKamote",
-    keyHighlight: "Started coding at 52, now 57 with 2 apps live on App Store",
+    keyHighlight: "Started coding in 2020 in a journey that as of today (Dec 2025 @57yo) has 2 apps live on the Apple App Store.",
   },
   about: {
-    brief: "I'm a solopreneur who builds mobile apps from concept to App Store. From designing logos to managing infrastructure, I handle every aspect of the development process. Started coding at 52, now 57 with 2 apps live on the Apple App Store.",
+    brief: "I'm a solopreneur who builds mobile apps from concept to App Store. From designing logos to managing infrastructure, I handle every aspect of the development process. Started coding in 2020 in a journey that as of today (Dec 2025 @57yo) has 2 apps live on the Apple App Store.",
     full: `I started my coding journey in 2020 at the age of 52, proving that it's never too late to learn something new. Now at 57, I've built and launched 2 mobile applications on the Apple App Store, with over 75 repositories on GitHub.
 
 As a solopreneur, I handle every aspect of mobile app development from initial concept to App Store submission. This includes designing logos, developing the apps, building supporting websites, managing hosting infrastructure, and maintaining email services. My deployment workflows are fully automated and habitual - from creating a Next.js folder to pushing to GitHub, automating Vercel deployment and pointing to my Hostinger domain, or deploying mobile apps from Cursor IDE through EAS Expo to App Connect and the Apple App Store.
@@ -97,8 +102,8 @@ As a Singapore Permanent Resident, I'm passionate about creating practical appli
       shortDescription: "Professional field report generator with templates and photo integration",
       tech: ["React Native", "Expo", "Firebase"],
       status: "Live on App Store",
-      website: "https://pdfreportmaker.com",
-      appStore: "#",
+      website: "https://pdfreportmaker.com/",
+      appStore: "https://apps.apple.com/sg/app/pdf-report-maker/id6746045625",
       github: "#",
       features: [
         "Multiple professional templates",
@@ -114,8 +119,8 @@ As a Singapore Permanent Resident, I'm passionate about creating practical appli
       shortDescription: "Tournament tracking and management for billiard competitions",
       tech: ["React Native", "Expo", "Firebase"],
       status: "Live on App Store",
-      website: "https://tournatracker.com",
-      appStore: "#",
+      website: "https://tournatrack.pdfreportmaker.com/",
+      appStore: "https://apps.apple.com/app/id674856576",
       github: "#",
       features: [
         "Tournament management",
