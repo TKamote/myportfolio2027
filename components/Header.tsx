@@ -33,7 +33,7 @@ export default function Header() {
               alt="David Verano Logo"
               width={120}
               height={120}
-              className="object-contain h-8 md:h-10 w-auto rounded-lg flex-shrink-0"
+              className="object-contain h-10 md:h-[54px] w-auto rounded-lg flex-shrink-0"
               priority
             />
             <span className="text-base md:text-lg lg:text-xl font-bold text-gray-900 dark:text-white whitespace-nowrap">
