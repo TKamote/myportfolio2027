@@ -37,12 +37,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       <div className="p-4 md:p-6">
         <div className="flex items-start gap-4 mb-3">
           {logoMap[project.id] && (
-            <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 bg-gray-50 dark:bg-gray-700/50 rounded-xl p-2 flex items-center justify-center border border-gray-200 dark:border-gray-600">
+            <div className="flex-shrink-0 w-[77px] h-[77px] md:w-24 md:h-24 bg-gray-50 dark:bg-gray-700/50 rounded-xl p-2 flex items-center justify-center border border-gray-200 dark:border-gray-600">
               <Image
                 src={logoMap[project.id]}
                 alt={`${project.title} logo`}
-                width={72}
-                height={72}
+                width={86}
+                height={86}
                 className="rounded-lg object-contain"
               />
             </div>
