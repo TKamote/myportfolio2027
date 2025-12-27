@@ -119,7 +119,7 @@ As a Singapore Permanent Resident, I'm passionate about creating practical appli
       shortDescription: "Tournament tracking and management for billiard competitions",
       tech: ["React Native", "Expo", "Firebase"],
       status: "Live on App Store",
-      website: "https://tournatrack.pdfreportmaker.com/",
+      website: "https://www.tournatracker.com/",
       appStore: "https://apps.apple.com/app/id674856576",
       github: "#",
       features: [
