@@ -51,15 +51,19 @@ export default function TextToSpeech() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to generate audio");
+        // Try to get error message from response
+        const errorData = await response.json().catch(() => ({}));
+        const errorMessage = errorData.error || `HTTP ${response.status}: ${response.statusText}`;
+        throw new Error(errorMessage);
       }
 
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       setAudioUrl(url);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error generating audio:", error);
-      alert("Failed to generate audio. Please check your Google Cloud setup.");
+      const errorMessage = error?.message || "Failed to generate audio. Please check your Google Cloud setup.";
+      alert(`Error: ${errorMessage}`);
     } finally {
       setIsGenerating(false);
     }

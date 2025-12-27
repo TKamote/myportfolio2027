@@ -5,39 +5,48 @@ export async function GET() {
     // Import Google Cloud TTS client
     const { TextToSpeechClient } = require("@google-cloud/text-to-speech");
     
-    // Get credentials path from environment or use default
-    const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+    // Get credentials from environment variable
+    const credentialsEnv = process.env.GOOGLE_APPLICATION_CREDENTIALS;
     const path = require("path");
     const fs = require("fs");
     const projectRoot = process.cwd();
     
-    // Try to resolve credentials file
-    let credentialsFile = null;
-    
-    // First, try environment variable
-    if (credentialsPath) {
-      credentialsFile = path.isAbsolute(credentialsPath) 
-        ? credentialsPath 
-        : path.join(projectRoot, credentialsPath.replace(/^\.\//, ""));
-    } else {
-      // Fallback: try common location
-      credentialsFile = path.join(projectRoot, "myportfoliowebsite.json");
-    }
-    
-    // Check if file exists
-    if (!fs.existsSync(credentialsFile)) {
-      return NextResponse.json(
-        { error: `Credentials file not found at: ${credentialsFile}. Please ensure myportfoliowebsite.json exists in your project root.` },
-        { status: 500 }
-      );
-    }
-    
-    // Initialize client with credentials file
+    // Initialize client with credentials
     let client;
     try {
-      client = new TextToSpeechClient({
-        keyFilename: credentialsFile,
-      });
+      // Check if credentialsEnv is a JSON string (production) or file path (local dev)
+      if (credentialsEnv && credentialsEnv.trim().startsWith("{")) {
+        // Production: credentials are stored as JSON string in environment variable
+        const credentials = JSON.parse(credentialsEnv);
+        client = new TextToSpeechClient({
+          credentials: credentials,
+        });
+      } else {
+        // Local development: credentials are a file path
+        let credentialsFile = null;
+        
+        if (credentialsEnv) {
+          // Use path from environment variable
+          credentialsFile = path.isAbsolute(credentialsEnv) 
+            ? credentialsEnv 
+            : path.join(projectRoot, credentialsEnv.replace(/^\.\//, ""));
+        } else {
+          // Fallback: try common location
+          credentialsFile = path.join(projectRoot, "myportfoliowebsite.json");
+        }
+        
+        // Check if file exists
+        if (!fs.existsSync(credentialsFile)) {
+          return NextResponse.json(
+            { error: `Credentials file not found at: ${credentialsFile}. Please ensure myportfoliowebsite.json exists in your project root or set GOOGLE_APPLICATION_CREDENTIALS environment variable.` },
+            { status: 500 }
+          );
+        }
+        
+        client = new TextToSpeechClient({
+          keyFilename: credentialsFile,
+        });
+      }
     } catch (error: any) {
       console.error("Client initialization error:", error);
       return NextResponse.json(
