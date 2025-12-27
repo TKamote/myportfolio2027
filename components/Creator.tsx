@@ -4,6 +4,7 @@ import { portfolioData } from "@/lib/data";
 import { motion, AnimatePresence } from "framer-motion";
 import { Youtube, Facebook, ExternalLink, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import TextToSpeech from "./TextToSpeech";
 
 interface CreatorProps {
   disableExpansion?: boolean;
@@ -156,11 +157,9 @@ export default function Creator({ disableExpansion = false }: CreatorProps) {
                     Convert your text into natural-sounding speech using AI-powered technology.
                   </p>
                   
-                  {/* Placeholder for Text to Speech UI */}
+                  {/* Text to Speech UI */}
                   <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <p className="text-center text-gray-500 dark:text-gray-400">
-                      Text to Speech interface will be built here
-                    </p>
+                    <TextToSpeech />
                   </div>
                 </div>
               </div>
