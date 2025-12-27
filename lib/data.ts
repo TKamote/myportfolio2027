@@ -160,6 +160,12 @@ As a Singapore Permanent Resident, I'm passionate about creating practical appli
       url: "https://www.facebook.com/share/1Ze8kWN3N8/?mibextid=wwXIfr",
       description: "Billiard tournament livestreams with professional overlays",
     },
+    textToSpeech: {
+      name: "Text to Speech",
+      url: "#",
+      description: "AI-powered text-to-speech application using Google Cloud services",
+      status: "In Development",
+    },
   },
   deployment: {
     nextjs: {
