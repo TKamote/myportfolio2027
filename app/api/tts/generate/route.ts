@@ -14,13 +14,43 @@ export async function POST(request: NextRequest) {
     // Import Google Cloud TTS client
     const { TextToSpeechClient } = require("@google-cloud/text-to-speech");
     
-    // Initialize client (will use GOOGLE_APPLICATION_CREDENTIALS env var or default credentials)
+    // Get credentials path from environment or use default
+    const credentialsPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+    const path = require("path");
+    const fs = require("fs");
+    const projectRoot = process.cwd();
+    
+    // Try to resolve credentials file
+    let credentialsFile = null;
+    
+    // First, try environment variable
+    if (credentialsPath) {
+      credentialsFile = path.isAbsolute(credentialsPath) 
+        ? credentialsPath 
+        : path.join(projectRoot, credentialsPath.replace(/^\.\//, ""));
+    } else {
+      // Fallback: try common location
+      credentialsFile = path.join(projectRoot, "myportfoliowebsite.json");
+    }
+    
+    // Check if file exists
+    if (!fs.existsSync(credentialsFile)) {
+      return NextResponse.json(
+        { error: `Credentials file not found at: ${credentialsFile}. Please ensure myportfoliowebsite.json exists in your project root. Current project root: ${projectRoot}` },
+        { status: 500 }
+      );
+    }
+    
+    // Initialize client with credentials file
     let client;
     try {
-      client = new TextToSpeechClient();
+      client = new TextToSpeechClient({
+        keyFilename: credentialsFile,
+      });
     } catch (error: any) {
+      console.error("Client initialization error:", error);
       return NextResponse.json(
-        { error: "Google Cloud credentials not configured. Please set GOOGLE_APPLICATION_CREDENTIALS environment variable. See TTS_SETUP.md for instructions." },
+        { error: `Failed to initialize Google Cloud client. Error: ${error.message}. Please check your credentials file.` },
         { status: 500 }
       );
     }

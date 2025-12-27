@@ -34,3 +34,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Text to Speech - Google Cloud credentials
+myportfoliowebsite.json
+
