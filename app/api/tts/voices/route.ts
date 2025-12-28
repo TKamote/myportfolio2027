@@ -81,7 +81,21 @@ export async function GET() {
     const [result] = await client.listVoices();
     const voices = result.voices || [];
 
-    return NextResponse.json({ voices });
+    // Return voices with all available properties
+    // Google Cloud TTS voice object contains:
+    // - name: voice identifier (e.g., "en-US-Neural2-F")
+    // - languageCodes: array of supported language codes
+    // - ssmlGender: MALE, FEMALE, or NEUTRAL
+    // - naturalSampleRateHertz: sample rate (e.g., 24000)
+    const formattedVoices = voices.map((voice: any) => ({
+      name: voice.name,
+      languageCodes: voice.languageCodes || [],
+      languageCode: voice.languageCodes?.[0] || "", // Primary language code
+      ssmlGender: voice.ssmlGender || "NEUTRAL",
+      naturalSampleRateHertz: voice.naturalSampleRateHertz || null,
+    }));
+
+    return NextResponse.json({ voices: formattedVoices });
   } catch (error: any) {
     console.error("Voices Error:", error);
     return NextResponse.json(
