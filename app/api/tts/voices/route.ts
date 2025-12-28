@@ -14,13 +14,32 @@ export async function GET() {
     // Initialize client with credentials
     let client;
     try {
+      // Debug: Log if env var exists (without showing full value for security)
+      console.log("GOOGLE_APPLICATION_CREDENTIALS exists:", !!credentialsEnv);
+      
+      // Clean the credentials string - remove outer quotes if present
+      let cleanedCredentials = credentialsEnv?.trim() || "";
+      if (cleanedCredentials.startsWith('"') && cleanedCredentials.endsWith('"')) {
+        // Remove outer quotes
+        cleanedCredentials = cleanedCredentials.slice(1, -1);
+        console.log("Removed outer quotes from credentials");
+      }
+      
+      console.log("GOOGLE_APPLICATION_CREDENTIALS starts with {:", cleanedCredentials.startsWith("{"));
+      
       // Check if credentialsEnv is a JSON string (production) or file path (local dev)
-      if (credentialsEnv && credentialsEnv.trim().startsWith("{")) {
+      if (cleanedCredentials && cleanedCredentials.startsWith("{")) {
         // Production: credentials are stored as JSON string in environment variable
-        const credentials = JSON.parse(credentialsEnv);
-        client = new TextToSpeechClient({
-          credentials: credentials,
-        });
+        try {
+          const credentials = JSON.parse(cleanedCredentials);
+          client = new TextToSpeechClient({
+            credentials: credentials,
+          });
+          console.log("Using credentials from environment variable (JSON)");
+        } catch (parseError: any) {
+          console.error("Failed to parse credentials JSON:", parseError.message);
+          throw new Error(`Invalid JSON in GOOGLE_APPLICATION_CREDENTIALS: ${parseError.message}`);
+        }
       } else {
         // Local development: credentials are a file path
         let credentialsFile = null;
@@ -37,12 +56,15 @@ export async function GET() {
         
         // Check if file exists
         if (!fs.existsSync(credentialsFile)) {
+          console.error(`Credentials file not found at: ${credentialsFile}`);
+          console.error(`Environment variable GOOGLE_APPLICATION_CREDENTIALS is: ${credentialsEnv ? 'set' : 'not set'}`);
           return NextResponse.json(
-            { error: `Credentials file not found at: ${credentialsFile}. Please ensure myportfoliowebsite.json exists in your project root or set GOOGLE_APPLICATION_CREDENTIALS environment variable.` },
+            { error: `Credentials file not found at: ${credentialsFile}. Please ensure myportfoliowebsite.json exists in your project root or set GOOGLE_APPLICATION_CREDENTIALS environment variable with JSON credentials. Environment variable is ${credentialsEnv ? 'set but not JSON format' : 'not set'}` },
             { status: 500 }
           );
         }
         
+        console.log("Using credentials from file:", credentialsFile);
         client = new TextToSpeechClient({
           keyFilename: credentialsFile,
         });
