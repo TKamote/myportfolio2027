@@ -1,6 +1,17 @@
-# Vercel Environment Variable Setup for TTS
+# Vercel Environment Variable Setup
 
-## Step-by-Step Instructions
+This guide covers setting up **both Google Cloud TTS and Firebase** environment variables in Vercel.
+
+## Required Environment Variables
+
+You need to set up:
+1. **Google Cloud TTS** credentials (`GOOGLE_APPLICATION_CREDENTIALS`)
+2. **Firebase Client Config** (6 variables starting with `NEXT_PUBLIC_FIREBASE_*`)
+3. **Firebase Service Account** (`FIREBASE_SERVICE_ACCOUNT`)
+
+---
+
+## Part 1: Google Cloud TTS Setup
 
 ### Step 1: Access Vercel Dashboard
 1. Go to [vercel.com](https://vercel.com)
@@ -101,12 +112,87 @@ After adding the environment variable, you need to redeploy:
 ✅ **Good:** They're not exposed in your code or git repository
 ✅ **Good:** Each environment (prod/preview/dev) can have different values
 
+---
+
+## Part 2: Firebase Client Config Setup
+
+### Step 1: Get Firebase Config Values
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Select your project
+3. Go to **Project Settings** (gear icon)
+4. Scroll to **Your apps** section
+5. Click on your web app (or create one)
+6. Copy the config values
+
+### Step 2: Add Firebase Environment Variables in Vercel
+
+Add these 6 variables in Vercel (Settings → Environment Variables):
+
+| Variable Name | Value | Environments |
+|--------------|-------|--------------|
+| `NEXT_PUBLIC_FIREBASE_API_KEY` | Your API key (starts with `AIza...`) | ✅ All |
+| `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN` | `your-project.firebaseapp.com` | ✅ All |
+| `NEXT_PUBLIC_FIREBASE_PROJECT_ID` | Your project ID | ✅ All |
+| `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET` | `your-project.appspot.com` | ✅ All |
+| `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID` | Your sender ID | ✅ All |
+| `NEXT_PUBLIC_FIREBASE_APP_ID` | Your app ID | ✅ All |
+
+**Important**: 
+- No quotes around values
+- Enable for Production, Preview, and Development
+- These are public variables (safe to expose)
+
+---
+
+## Part 3: Firebase Service Account Setup
+
+### Step 1: Get Service Account JSON
+1. Go to Firebase Console → Project Settings
+2. Go to **Service Accounts** tab
+3. Click **Generate new private key**
+4. Download the JSON file
+
+### Step 2: Add to Vercel
+
+**Variable Name:**
+```
+FIREBASE_SERVICE_ACCOUNT
+```
+
+**Variable Value:**
+Copy the ENTIRE JSON content as a single-line string (same process as Google Cloud credentials).
+
+**Example format:**
+```json
+{"type":"service_account","project_id":"text-to-speech-72c60",...}
+```
+
+**Important**:
+- Paste as single line (no line breaks)
+- Enable for all environments
+- This is a SECRET variable (keep it secure)
+
+---
+
+## Complete Checklist
+
+After setup, you should have these variables in Vercel:
+
+✅ `GOOGLE_APPLICATION_CREDENTIALS` (Google Cloud TTS)  
+✅ `NEXT_PUBLIC_FIREBASE_API_KEY`  
+✅ `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`  
+✅ `NEXT_PUBLIC_FIREBASE_PROJECT_ID`  
+✅ `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`  
+✅ `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`  
+✅ `NEXT_PUBLIC_FIREBASE_APP_ID`  
+✅ `FIREBASE_SERVICE_ACCOUNT` (Firebase Admin)
+
+---
+
 ## Next Steps
 
-After setting this up, we'll need to update the code to:
-1. Read from the environment variable (JSON string)
-2. Parse it if it's a string
-3. Fall back to file if env var doesn't exist (for local dev)
-
-But first, let's get this environment variable set up in Vercel!
+1. Redeploy your application after adding all variables
+2. Test authentication: Sign up at `/auth/signup`
+3. Test TTS: Generate audio at `/creator`
+4. Check usage stats are displayed correctly
 

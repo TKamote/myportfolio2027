@@ -13,8 +13,9 @@ This folder contains all project documentation and setup guides.
 - **TTS_EDUCATION.md** - Educational guide about audio sample rates, voice types, and languages
 - **TTS_TROUBLESHOOTING.md** - Troubleshooting guide for TTS issues
 
-### Deployment
-- **VERCEL_SETUP.md** - Guide for setting up environment variables in Vercel
+### Deployment & Setup
+- **INSTALLATION_GUIDE.md** - Complete setup guide for Firebase, Stripe, and environment variables
+- **VERCEL_SETUP.md** - Guide for setting up all environment variables in Vercel (Google Cloud TTS + Firebase)
 
 ## 📁 Other Documentation
 

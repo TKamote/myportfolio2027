@@ -37,3 +37,6 @@ next-env.d.ts
 # Text to Speech - Google Cloud credentials
 myportfoliowebsite.json
 
+# Firebase service account
+firebase-service-account.json
+

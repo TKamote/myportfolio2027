@@ -162,8 +162,14 @@ As a Singapore Permanent Resident, I'm passionate about creating practical appli
     },
     textToSpeech: {
       name: "Text to Speech",
-      url: "#",
+      url: "https://tts.tkamot.com/",
       description: "AI-powered text-to-speech application using Google Cloud services",
+      status: "Live",
+    },
+    videoEditing: {
+      name: "Video Editing Software",
+      url: "#",
+      description: "AI-powered first cut generation for your fine-tuning",
       status: "In Development",
     },
   },

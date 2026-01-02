@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,9 +38,11 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider>
+          <Providers>
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
+          </Providers>
         </ThemeProvider>
       </body>
     </html>
